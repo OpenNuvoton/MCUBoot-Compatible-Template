@@ -1,0 +1,24 @@
+[submodule "platform/m2354/bsp"]
+	path = platform/m2354/bsp
+	url = https://github.com/OpenNuvoton/M2354BSP
+[submodule "platform/m3331/bsp"]
+	path = platform/m3331/bsp
+	url = ssh://hcrdgit4/M3331/bsp
+[submodule "platform/m55m1/bsp"]
+	path = platform/m55m1/bsp
+	url = https://github.com/OpenNuvoton/M55M1BSP.git
+[submodule "platform/m480/bsp"]
+	path = platform/m480/bsp
+	url = https://github.com/OpenNuvoton/M480BSP.git
+[submodule "platform/m261/bsp"]
+	path = platform/m261/bsp
+	url = https://github.com/OpenNuvoton/M261BSP.git
+[submodule "platform/m460/bsp"]
+	path = platform/m460/bsp
+	url = https://github.com/OpenNuvoton/m460bsp.git
+[submodule "platform/m2l31/bsp"]
+	path = platform/m2l31/bsp
+	url = https://github.com/OpenNuvoton/M2L31BSP.git
+[submodule "platform/m2351/bsp"]
+	path = platform/m2351/bsp
+	url = https://github.com/OpenNuvoton/M2351BSP.git
