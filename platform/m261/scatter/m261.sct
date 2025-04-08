@@ -1,0 +1,17 @@
+#include "region_defs.h"
+
+/*----------------------------------------------------------------------------
+  Scatter Region definition
+ *----------------------------------------------------------------------------*/
+LR_ROM CODE_START CODE_SIZE {
+    ER_ROM CODE_START CODE_SIZE {
+        *.o (RESET, +First)
+        *(InRoot$$Sections)
+        .ANY (+RO)
+        .ANY (+XO)
+    }
+
+    RW_RAM DATA_START ALIGN 8 {
+        *(+RW +ZI)
+    }
+}

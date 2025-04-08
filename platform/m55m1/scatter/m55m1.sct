@@ -1,0 +1,59 @@
+#include "region_defs.h"
+
+LR_ROM CODE_START CODE_SIZE  {                       ; load region size_region
+    ER_ROM CODE_START CODE_SIZE  {                   ; load address = execution address
+        *.o (RESET, +First)
+        * (InRoot$$Sections)
+        ; Make sure reset_handler ends up in root segment
+        startup_M55M1.o
+        .ANY (+RO)
+    }
+
+    ITCM 0x00000000 0x00010000
+    {
+        .ANY (ITCM)
+    }
+
+    RW_NOINIT DATA_START UNINIT DATA_SIZE
+    {
+        .ANY (.bss.NoInit)
+    }
+
+    RW_RAM AlignExpr(+0, 8)
+    {
+        .ANY (+RW +ZI)
+    }
+
+    ARM_LIB_HEAP AlignExpr(+0, 8) EMPTY  HEAP_SIZE {}       ; Reserve empty region for heap
+
+    DTCM_VTOR 0x20000000
+    {
+        * (DTCM.VTOR)
+    }
+
+    DTCM AlignExpr(+0, 8)
+    {
+        .ANY (DTCM.Init)
+        .ANY (.bss.DTCM.ZeroInit)
+    }
+
+    SRAM_NONCACHEABLE 0x20230000 0x00020000
+    {
+        .ANY (NonCacheable.Init)
+        .ANY (.bss.NonCacheable.ZeroInit)
+    }
+
+    ; Empty section to get maximum size of NonCacheable region with Image$$SRAM_NONCACHEABLE_END$$Base
+    SRAM_NONCACHEABLE_END 0x20250000
+    {
+        .ANY (SRAM_NONCACHEABLE_END)
+    }
+
+    LPSRAM 0x20310000 0x00002000
+    {
+        .ANY (.lpSram)
+    }
+
+    ARM_LIB_STACK STACK_TOP EMPTY -STACK_SIZE {}     ; Reserve empty region for stack
+
+}
